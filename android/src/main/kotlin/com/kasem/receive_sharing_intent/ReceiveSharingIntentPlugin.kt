@@ -129,10 +129,10 @@ class ReceiveSharingIntentPlugin : FlutterPlugin, ActivityAware, MethodCallHandl
                 eventSinkText?.success(latestText)
             }
             intent.action == Intent.ACTION_VIEW -> { // Opening URL
-                val value = intent.dataString
-                if (initial) initialText = value
-                latestText = value
-                eventSinkText?.success(latestText)
+                val value = getMediaUris(intent)
+                if (initial) initialMedia = value
+                latestMedia = value
+                eventSinkMedia?.success(latestMedia?.toString())
             }
         }
     }
